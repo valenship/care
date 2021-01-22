@@ -1,0 +1,42 @@
+#DECEMBER 2020_ _ _rc3_CONGRESS
+library(foreign)
+fromstata <-NULL
+fromstata<-read.dta(file.choose())
+read.dta
+attach(fromstata)
+###### 1 Dependet variable 3d
+den3d <- kde2d(age, maxgrip)
+crp <- colorRampPalette(c('black', 'darkblue','lightblue'))
+col2 <- crp(length(den3d$z))[rank(den3d$z)]
+
+persp3d(x=den3d, col = col2,
+        aspect=c(1, 0.85, .3),  box=FALSE, alpha = 0.95,
+        axes=FALSE, xlab="age", ylab="maxgrip", zlab="den3d")
+bg.col = rgl.bg(color = "lightblue")
+
+###### 2 PARTNERhh
+attach(fromstata)
+sample_of_diamonds <- fromstata[sample(nrow(fromstata),3000),]
+attach(sample_of_diamonds)
+scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(GenPARTNERhh), grid = FALSE, fit = "additive",
+          surface = TRUE, ellipsoid = TRUE, level=0.0005,  ellipsoid.alpha=0.11, sphere.size=3.5,  residuals= TRUE, 
+          bg.col=c( "black"), surface.col = c("yellow", "yellow", "black","black"  ), 
+          axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
+bg.col = rgl.bg(color = "lightblue")
+###### 3 Grandchildren
+attach(fromstata)
+sample_of_diamonds <- fromstata[sample(nrow(fromstata),2000),]
+attach(sample_of_diamonds)
+scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Grandchildren), grid = FALSE,
+          surface = FALSE, ellipsoid = TRUE, level=0.65, ellipsoid.alpha=0.11, sphere.size=4.5,
+          bg.col=c( "black"), surface.col = c("blue", "deepskyblue", "palevioletred1", "palevioletred3", "red","red4"), 
+          axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
+bg.col = rgl.bg(color = "lightblue")
+
+###### 4 sib
+attach(fromstata)
+scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Gensib), grid = TRUE,
+          surface = FALSE, ellipsoid = TRUE, level=0.09, ellipsoid.alpha=0.051, 
+          bg.col=c( "black"), surface.col = c("black","black", "grey16","grey16", "yellow","yellow",  "orange","orange", "red","red", "red4", "red4"), 
+          axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
+bg.col = rgl.bg(color = "lightblue")

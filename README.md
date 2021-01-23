@@ -1,14 +1,11 @@
 # Valiship Visualization Library
 
-## Author
-[Valentina Shipovskaya](https://www.anobii.com/contributors/Valentina_Shipovskaya/3353982)
+## Author [Valentina Shipovskaya](https://www.anobii.com/contributors/Valentina_Shipovskaya/3353982)
 
 ## Overview
-
 This repository contains R demo code snippets
 
-## License
-
+## License
 Copyright (c) 2021 Valentina Shipovskaya
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +27,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## References
-
 - [Generations, Intergenerational Relationships, Generational Policy: A Multilingual Compendium - Edition 2017](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3125097)
 - [Gesundheit älterer Menschen in der Schweiz - Geschlechtsspezifische Aspekte](https://www.anobii.com/books/Gesundheit_%C3%A4lterer_Menschen_in_der_Schweiz/9783639486537/01b9a0783d94fb0caf)

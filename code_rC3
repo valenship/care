@@ -1,5 +1,3 @@
-#23.01.2020 TESTLAUF 
-TESTLAUF FUER GITHUB
 #DECEMBER 2020_ _ _rc3_CONGRESS
 library(foreign)
 fromstata <-NULL

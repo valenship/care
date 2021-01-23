@@ -1,4 +1,4 @@
-# Valiship Visualization Library
+# @vali_ship Visualization Library
 
 ## Author [Valentina Shipovskaya](https://www.anobii.com/contributors/Valentina_Shipovskaya/3353982)
 

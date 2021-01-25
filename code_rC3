@@ -13,7 +13,6 @@ persp3d(x=den3d, col = col2,
         aspect=c(1, 0.85, .3),  box=FALSE, alpha = 0.95,
         axes=FALSE, xlab="age", ylab="maxgrip", zlab="den3d")
 bg.col = rgl.bg(color = "lightblue")
-
 ###### 2 PARTNERhh
 attach(fromstata)
 sample_of_diamonds <- fromstata[sample(nrow(fromstata),3000),]
@@ -32,7 +31,6 @@ scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Grandchildren), grid 
           bg.col=c( "black"), surface.col = c("blue", "deepskyblue", "palevioletred1", "palevioletred3", "red","red4"), 
           axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
 bg.col = rgl.bg(color = "lightblue")
-
 ###### 4 sib
 attach(fromstata)
 scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Gensib), grid = TRUE,

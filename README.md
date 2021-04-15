@@ -28,4 +28,5 @@ SOFTWARE.
 
 ## References
 - [Generations, Intergenerational Relationships, Generational Policy: A Multilingual Compendium - Edition 2017](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3125097)
-- [Gesundheit älterer Menschen in der Schweiz - Geschlechtsspezifische Aspekte](https://www.anobii.com/books/Gesundheit_%C3%A4lterer_Menschen_in_der_Schweiz/9783639486537/01b9a0783d94fb0caf)
+- [Gesundheit älterer Menschen in der Schweiz - Geschlechtsspezifische Aspekte](https://www.anobii.com/books/Gesundheit_%C3%A4lterer_Menschen_in_der_Schweiz/9783639486537/01b9a0783d94fb0caf https://doi.org/10.5446/51966) 
+- [Visual dynamics of healthy aging](https://av.tib.eu/media/51966)

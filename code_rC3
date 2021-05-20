@@ -35,7 +35,7 @@ scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Grandchildren), grid 
           axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
 bg.col = rgl.bg(color = "lightblue")
 
-###### 4 siblings (inkl.stepfamily configurations)
+###### 4 siblings (inkl. stepfamily configurations)
 attach(fromstata)
 scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Gensib), grid = TRUE,
           surface = FALSE, ellipsoid = TRUE, level=0.09, ellipsoid.alpha=0.051, 

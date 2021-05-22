@@ -4,6 +4,7 @@ fromstata <-NULL
 fromstata<-read.dta(file.choose())
 read.dta
 attach(fromstata)
+# Welcome to GitHub!
 
 ###### 1 Dependet variable 3d
 den3d <- kde2d(age, maxgrip)

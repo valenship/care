@@ -43,3 +43,11 @@ scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(Gensib), grid = TRUE,
           bg.col=c( "black"), surface.col = c("black","black", "grey16","grey16", "yellow","yellow",  "orange","orange", "red","red", "red4", "red4"), 
           axis.col = c("darksalmon", "darksalmon", "darksalmon"), axis.scales = TRUE)
 bg.col = rgl.bg(color = "lightblue")
+
+###### Extra "DIY data object from the statistical sample!" (2022)
+scatter3d(x=log(bmi), y=maxgrip, z=age, groups = as.factor(sandwich_generation), grid = TRUE, grid.lines=65, fit = "additive", fill=TRUE,
+surface = FALSE, surface.alpha=0.0009, ellipsoid= FALSE, level=0.0005, ellipsoid.alpha=0.11, sphere.size=5.5, residuals= TRUE,
+bg.col=c( "black"), surface.col = c( "blue", "lightblue", "magenta", "pink"),
+axis.col = c("black", "black", "black"), axis.scales =TRUE)
+movie3d(spin3d(axis = c(0, 1, 0)), duration = 20,
+dir = getwd())

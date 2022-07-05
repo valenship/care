@@ -1,0 +1,207 @@
+#######STORY: Health of adult daughters and sons***********
+library(foreign)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+read.dta("C:/Users/me/Desktop/easySHARE_rel6-1-0.dta")
+# # # #HEALTH VARIABLE
+# # ## #herren mit no parents
+panel_m<- subset(panel_all, gender==2 ) 
+panel_m_G <- subset(panel_all, gender==2 & 
+                      psandwich=="no parents (2% no info)")
+predictvals_m = 
+  function(model, xvar, yvar, xrange=NULL, samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_m = lm(maxgrip ~ age+I(age^2),  panel_m_G)
+lm_sq_predicted_m = predictvals_m(modlm_sq_m,'age','maxgrip')
+# # ## #Damen mit no parents
+
+panel_f <- subset(panel_all, gender==1 &
+                    psandwich=="no parents (2% no info)")
+
+predictvals_f = function(model, xvar, yvar, 
+                         xrange=NULL, samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_f = lm(maxgrip ~ age+I(age^2),  panel_f)
+lm_sq_predicted_f = predictvals_f(modlm_sq_f,'age','maxgrip')
+l<-ggplot(panel_all, aes(x=age, y=maxgrip, 
+                         color=psandwich)) + 
+geom_point( size=0.8) +
+  scale_color_manual(values=c("yellow","green","red","blue"))
+b<-l+ geom_line(data=lm_sq_predicted_m, 
+                color='yellow',lty=1, size=1.9) 
+bb<-b +  geom_line(data=lm_sq_predicted_f, 
+                   color='yellow',lty=1, size=1.9) 
+drei<-bb +  geom_line(data=lm_sq_predicted_m1, 
+                      color='green',lty=1, size=0.9)
+vier<-drei +  geom_line(data=lm_sq_predicted_f1, 
+                        color='green',lty=1, size=0.9)
+five<-vier +  geom_line(data=lm_sq_predicted_m2, 
+                        color='red',lty=1, size=0.9)
+six<- five +  geom_line(data=lm_sq_predicted_f2, 
+                        color='red',lty=1, size=0.9)
+seven<-six +  geom_line(data=lm_sq_predicted_m0, 
+                        color='blue',lty=1, size=0.9)
+acht<- seven +  geom_line(data=lm_sq_predicted_f0, 
+                          color='blue',lty=1, size=0.9)
+bild<- acht + annotate("text", x = 100, y = 35, 
+                       label = "sons")+ 
+  annotate("text", x = 100, y = 5, label = "daughters")
+Bild<- bild + ggtitle("Health by adult sons and daughters")
+# # ## #herren mit father
+panel_m<- subset(panel_all, gender==2 ) 
+panel_m_G1 <- subset(panel_all, gender==2 & psandwich=="father")
+
+predictvals_m1 = function(model, xvar, yvar, 
+                          xrange=NULL, samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_m1 = lm(maxgrip ~ age+I(age^2),  panel_m_G1)
+lm_sq_predicted_m1 = predictvals_m1(modlm_sq_m1,'age','maxgrip')
+# # ## #Damen mit father
+panel_m<- subset(panel_all, gender==1 ) 
+panel_f_G1 <- subset(panel_all, gender==1 & psandwich=="father")
+
+predictvals_f1 = function(model, xvar, yvar, xrange=NULL, 
+                          samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_f1 = lm(maxgrip ~ age+I(age^2),  panel_f_G1)
+lm_sq_predicted_f1 = predictvals_f1(modlm_sq_f1,'age','maxgrip')
+# # ## #herren mit mother
+panel_m<- subset(panel_all, gender==2 ) 
+panel_m_G2 <- subset(panel_all, gender==2 & psandwich=="mother")
+
+predictvals_m2 = function(model, xvar, yvar, xrange=NULL, 
+                          samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_m2 = lm(maxgrip ~ age+I(age^2),  panel_m_G2)
+lm_sq_predicted_m2 = predictvals_m2(modlm_sq_m2,'age','maxgrip')
+# # ## #Damen mit mother
+panel_m<- subset(panel_all, gender==1 ) 
+panel_f_G2 <- subset(panel_all, gender==1 & psandwich=="mother")
+
+predictvals_f2 = function(model, xvar, yvar, xrange=NULL,
+                          samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_f2 = lm(maxgrip ~ age+I(age^2),  panel_f_G2)
+lm_sq_predicted_f2 = predictvals_f2(modlm_sq_f2,'age','maxgrip')
+# # ## #herren mit both parents
+panel_m<- subset(panel_all, gender==2 ) 
+panel_m_G0 <- subset(panel_all, gender==2 & 
+                       psandwich=="both natural parents")
+predictvals_m0 = function(model, xvar, yvar, 
+                          xrange=NULL, samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_m0 = lm(maxgrip ~ age+I(age^2),  panel_m_G0)
+lm_sq_predicted_m0 = predictvals_m0(modlm_sq_m0,'age','maxgrip')
+# # ## #Damen mit both natural parents
+panel_f_G0 <- subset(panel_all, gender==1 & 
+                       psandwich=="both natural parents")
+predictvals_f0 = function(model, xvar, yvar, xrange=NULL, 
+                          samples=30092,...){
+  if(is.null(xrange)){
+    if(class(model) %in% c('lm','glm')){
+      xrange= range(model$model[[xvar]])
+    }
+    else if(class(model) %in% c('loess')){
+      xrange = range(model$x)
+    }
+  }
+  newdata = data.frame(x = seq(xrange[1], xrange[2], 
+                               length.out=samples))
+  names(newdata) = xvar
+  newdata[[yvar]] = predict(model, newdata=newdata, ...)
+  newdata
+}
+modlm_sq_f0 = lm(maxgrip ~ age+I(age^2),  panel_f_G0)
+lm_sq_predicted_f0 = predictvals_f0(modlm_sq_f0,'age','maxgrip')

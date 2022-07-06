@@ -1,4 +1,4 @@
-#######STORY: Health of adult daughters and sons***********
+#STORY: Health of adult daughters and sons
 library(foreign)
 library(ggplot2)
 library(grid)

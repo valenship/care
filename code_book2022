@@ -1,3 +1,4 @@
+# Welcome to GitHub!
 #STORY: Health of adult daughters and sons
 library(foreign)
 library(ggplot2)
